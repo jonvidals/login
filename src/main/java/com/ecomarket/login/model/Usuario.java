@@ -15,7 +15,7 @@ public class Usuario {
     private int id;
     private String email;
     private String password;
-
+    private int rol;
 
 }
 

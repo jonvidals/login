@@ -28,6 +28,17 @@ public class UsuarioController {
         }
         Usuario usuarioValidado = usuarioService.validarUsuario(email, password);
         if (usuarioValidado != null) {
+            if (usuarioValidado.getRol() == 0) {
+                System.out.println("Usuario es administrador");
+            } else if (usuarioValidado.getRol() == 1) {
+                System.out.println("Usuario es cliente");
+            } else if (usuarioValidado.getRol() == 2) {
+                System.out.println("Usuario es empleado de venta");
+            } else if (usuarioValidado.getRol() == 3) {
+                System.out.println("Usuario es encargado de tienda");
+            } else if (usuarioValidado.getRol() == 4) {
+                System.out.println("Usuario es de logística");
+            }
             return ResponseEntity.ok(usuarioValidado);
         } else {
             System.out.println("Usuario no encontrado");
