@@ -22,12 +22,16 @@ public class UsuarioController {
     public ResponseEntity<Usuario> validarUsuario(@RequestBody Usuario usuario) {
         String email = usuario.getEmail();
         String password = usuario.getPassword();
-        if (email==null||email.isEmpty()||password==null||password.isEmpty()) {
+        if (email == null || email.isEmpty() || password == null || password.isEmpty()) {
             System.out.println("no pueden haber campos vacíos");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
         Usuario usuarioValidado = usuarioService.validarUsuario(email, password);
         if (usuarioValidado != null) {
+            if (!usuarioValidado.isActivo()) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                .body(null);
+            }
             if (usuarioValidado.getRol() == 0) {
                 System.out.println("Usuario es administrador");
             } else if (usuarioValidado.getRol() == 1) {
