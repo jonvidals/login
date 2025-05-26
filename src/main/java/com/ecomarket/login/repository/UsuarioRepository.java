@@ -6,7 +6,7 @@ import com.ecomarket.login.model.Usuario;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
     Usuario findByEmailAndPassword(String email, String password);
-
+    Usuario findById(Long id);
 
     
 }

@@ -15,5 +15,8 @@ public class UsuarioService {
     public Usuario validarUsuario(String email, String password) {
         return usuarioRepository.findByEmailAndPassword(email, password);
     }
+    public Usuario findById(Long id) {
+        return usuarioRepository.findById(id);
+    }
 }
 
